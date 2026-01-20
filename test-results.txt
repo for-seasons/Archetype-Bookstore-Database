@@ -1,0 +1,132 @@
+TAP version 13
+# Subtest: help and UUID generation commands do not need a database
+ok 1 - help and UUID generation commands do not need a database
+  ---
+  duration_ms: 2.0549
+  ...
+# Subtest: unrecognized commands, flags, duplicate options and positional arguments fail
+ok 2 - unrecognized commands, flags, duplicate options and positional arguments fail
+  ---
+  duration_ms: 0.3949
+  ...
+# Subtest: SQL injection stays in parameters and all view/function names are fixed
+ok 3 - SQL injection stays in parameters and all view/function names are fixed
+  ---
+  duration_ms: 1.5074
+  ...
+# Subtest: title prefix wildcard and escape characters are literal
+ok 4 - title prefix wildcard and escape characters are literal
+  ---
+  duration_ms: 0.2695
+  ...
+# Subtest: money keeps exact decimal strings and rejects invalid precision or values
+ok 5 - money keeps exact decimal strings and rejects invalid precision or values
+  ---
+  duration_ms: 0.718
+  ...
+# Subtest: IDs preserve bigint precision and pagination has strict bounds
+ok 6 - IDs preserve bigint precision and pagination has strict bounds
+  ---
+  duration_ms: 0.6201
+  ...
+# Subtest: stock operations require an explicit UUID and positive sale/receipt units
+ok 7 - stock operations require an explicit UUID and positive sale/receipt units
+  ---
+  duration_ms: 0.6425
+  ...
+# Subtest: negative stock adjustments work in both argument formats and reject zero
+ok 8 - negative stock adjustments work in both argument formats and reject zero
+  ---
+  duration_ms: 0.42
+  ...
+# Subtest: catalog edits require optimistic-lock version and explicit active flag
+ok 9 - catalog edits require optimistic-lock version and explicit active flag
+  ---
+  duration_ms: 0.2605
+  ...
+# Subtest: required text has bounds and rejects NUL
+ok 10 - required text has bounds and rejects NUL
+  ---
+  duration_ms: 0.3315
+  ...
+# Subtest: audit queries are bounded and cannot accept an arbitrary view
+ok 11 - audit queries are bounded and cannot accept an arbitrary view
+  ---
+  duration_ms: 0.193
+  ...
+# Subtest: network connections require credentials and a trusted CA
+ok 12 - network connections require credentials and a trusted CA
+  ---
+  duration_ms: 4.4475
+  ...
+# Subtest: plaintext development connections are restricted to explicit loopback
+ok 13 - plaintext development connections are restricted to explicit loopback
+  ---
+  duration_ms: 0.2895
+  ...
+# Subtest: production TLS verifies the server certificate and ignores downgrade environment settings
+ok 14 - production TLS verifies the server certificate and ignores downgrade environment settings
+  ---
+  duration_ms: 5.7803
+  ...
+# Subtest: bookstore database integration, security, and concurrency
+    # Subtest: three roles enforce cost visibility and mutation boundaries
+    ok 1 - three roles enforce cost visibility and mutation boundaries
+      ---
+      duration_ms: 34.7955
+      ...
+    # Subtest: invalid monetary, title, stock, and duplicate SKU inputs are rejected
+    ok 2 - invalid monetary, title, stock, and duplicate SKU inputs are rejected
+      ---
+      duration_ms: 17.8267
+      ...
+    # Subtest: input containing SQL syntax is stored literally
+    ok 3 - input containing SQL syntax is stored literally
+      ---
+      duration_ms: 1.021
+      ...
+    # Subtest: sale retry is idempotent and mismatched or cross-user replay is rejected
+    ok 4 - sale retry is idempotent and mismatched or cross-user replay is rejected
+      ---
+      duration_ms: 8.0365
+      ...
+    # Subtest: concurrent copies of one request change stock exactly once
+    ok 5 - concurrent copies of one request change stock exactly once
+      ---
+      duration_ms: 120.1853
+      ...
+    # Subtest: simultaneous tills cannot sell the same last copy
+    ok 6 - simultaneous tills cannot sell the same last copy
+      ---
+      duration_ms: 213.645
+      ...
+    # Subtest: stock and movement history roll back together
+    ok 7 - stock and movement history roll back together
+      ---
+      duration_ms: 5.5409
+      ...
+    # Subtest: optimistic catalog editing prevents lost updates and inactive books reject stock changes
+    ok 8 - optimistic catalog editing prevents lost updates and inactive books reject stock changes
+      ---
+      duration_ms: 9.6761
+      ...
+    # Subtest: 10,000 additional books fit and remain searchable with measured storage
+    ok 9 - 10,000 additional books fit and remain searchable with measured storage
+      ---
+      duration_ms: 404.8082
+      ...
+    1..9
+ok 15 - bookstore database integration, security, and concurrency
+  ---
+  duration_ms: 1069.0932
+  ...
+# {"benchmark":"10000 synthetic books plus behavioral test records","meanIndexedSkuLookupMs":0.268,"books_bytes":"2220032","movements_bytes":"65536","audit_bytes":"3268608","postgres_version":"18.6"}
+1..15
+# tests 24
+# suites 0
+# pass 24
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1261.5667

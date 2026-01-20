@@ -1,0 +1,36 @@
+\set ON_ERROR_STOP on
+
+SELECT (
+    :'staff' ~ '^staff_[a-z0-9_]{1,48}$'
+    AND :'access' IN ('bookstore_clerk', 'bookstore_manager', 'bookstore_admin')
+) AS valid_staff
+\gset
+
+\if :valid_staff
+    BEGIN;
+
+    SELECT format(
+        'CREATE ROLE %I LOGIN INHERIT NOSUPERUSER NOCREATEDB NOCREATEROLE '
+        'NOREPLICATION NOBYPASSRLS CONNECTION LIMIT 5',
+        :'staff'
+    )
+    \gexec
+
+    SELECT format('GRANT %I TO %I', :'access', :'staff')
+    \gexec
+
+    SELECT format('ALTER ROLE %I SET statement_timeout = %L', :'staff', '15s')
+    \gexec
+    SELECT format('ALTER ROLE %I SET lock_timeout = %L', :'staff', '5s')
+    \gexec
+    SELECT format('ALTER ROLE %I SET idle_in_transaction_session_timeout = %L', :'staff', '30s')
+    \gexec
+
+    COMMIT;
+
+    SET password_encryption = 'scram-sha-256';
+    \password :staff
+\else
+    \echo 'Invalid staff name or access level. Use staff_lowercase and one documented role.'
+    \quit 1
+\endif

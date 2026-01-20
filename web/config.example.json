@@ -1,0 +1,8 @@
+{
+  "host": "inventory.your-store.example",
+  "port": 5432,
+  "database": "bookstore",
+  "caFile": "C:\\Bookstore\\certificates\\store-ca.pem",
+  "uiPort": 4178,
+  "localDevelopment": false
+}

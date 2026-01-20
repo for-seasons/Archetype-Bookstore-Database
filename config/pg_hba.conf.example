@@ -1,0 +1,9 @@
+# Merge carefully: PostgreSQL uses the FIRST matching rule.
+# Replace 192.168.10.0/24 with your store subnet. Remove any earlier broad
+# trust/host rules that would bypass these restrictions. Keep a tested local
+# DBA access route before reloading. This is not a drop-in full config.
+hostnossl bookstore all 0.0.0.0/0 reject
+hostnossl bookstore all ::/0 reject
+hostssl bookstore +bookstore_clerk 192.168.10.0/24 scram-sha-256
+host bookstore all 0.0.0.0/0 reject
+host bookstore all ::/0 reject

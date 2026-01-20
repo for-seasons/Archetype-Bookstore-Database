@@ -1,0 +1,4 @@
+\set ON_ERROR_STOP on
+-- Run once, connected as the installation DBA to the postgres database.
+-- This deliberately fails if bookstore already exists; it never replaces data.
+CREATE DATABASE bookstore TEMPLATE template0 ENCODING 'UTF8';

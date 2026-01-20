@@ -1,0 +1,19 @@
+# Merge into the store server's configuration; replace placeholders first.
+# Use a supported, patched PostgreSQL 18 release.
+listen_addresses = 'localhost,STORE_SERVER_PRIVATE_IP'
+ssl = on
+ssl_cert_file = 'server.crt'
+ssl_key_file = 'server.key'
+ssl_min_protocol_version = 'TLSv1.2'
+password_encryption = 'scram-sha-256'
+# Keep durability enabled. Never trade these for a faster benchmark.
+fsync = on
+synchronous_commit = on
+full_page_writes = on
+# These initial limits suit a small store; tune from measured workload.
+max_connections = 50
+log_connections = on
+log_disconnections = on
+# Avoid logging staff passwords or every parameter value.
+log_statement = 'none'
+log_parameter_max_length_on_error = 0
