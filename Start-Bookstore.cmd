@@ -9,7 +9,7 @@ if errorlevel 1 (
   exit /b 1
 )
 if not exist "node_modules\pg\package.json" (
-  echo Ask your administrator to finish the one-time setup in UI-SETUP.md.
+  echo Ask your administrator to follow the Connect a staff computer section in README.md.
   pause
   exit /b 1
 )
