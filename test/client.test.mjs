@@ -1,3 +1,4 @@
+// AI-generated code.
 import assert from 'node:assert/strict';
 import { mkdtempSync, readFileSync, rmdirSync, unlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';

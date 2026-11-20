@@ -1,3 +1,4 @@
+// AI-generated code.
 // A deliberately bounded English/Chinese interpreter. It returns structured
 // intentions only; permissions, book selection, and writes belong to the server.
 const numberWords = new Map([

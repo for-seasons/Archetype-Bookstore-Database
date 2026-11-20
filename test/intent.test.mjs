@@ -1,3 +1,4 @@
+// AI-generated code.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { parseRequest } from '../web/intent.mjs';
